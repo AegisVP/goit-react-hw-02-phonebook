@@ -4,7 +4,7 @@ import { Box } from 'components/Common/Box.styled';
 import { Section } from 'components/Section/Section';
 import { ContactForm } from 'components/ContactForm/ContactForm';
 import { ContactFormFormik } from 'components/ContactFormFormik/ContactFormFormik';
-import { ListOfContacts } from 'components/ListOfContactas/ListOfContacts';
+import { ListOfContacts } from 'components/ListOfContacts/ListOfContacts';
 import { FilterForm } from 'components/Filter/Filter';
 import { FormikSelect } from 'components/FormikSelect/FormikSelect';
 
