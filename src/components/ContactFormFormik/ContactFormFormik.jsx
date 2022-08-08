@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Form, Formik } from 'formik';
 import * as yup from 'yup';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 
 import { SubmitButton, Label, InputField } from './ContactFormFormik.styled';
 import { ErrorText } from './ContactFormFormik.styled';
@@ -54,3 +54,7 @@ export class ContactFormFormik extends Component {
     );
   }
 }
+
+ContactFormFormik.propTypes = {
+  onSubmit: PropTypes.func,
+};

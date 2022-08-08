@@ -1,12 +1,12 @@
 import React from 'react';
 import { Box } from 'components/Common/Box.styled';
 import { List, ListItem, Name, Number, DeleteButton } from './ListOfContacts.styled';
+import { PropTypes } from 'prop-types';
 
 // export const ListOfContacts = ({ onDeleteContact, onEditContact, contacts, children }) => {
-export const ListOfContacts = ({ onDeleteContact, contacts, children }) => {
+export const ListOfContacts = ({ onDeleteContact, contacts }) => {
   return (
     <List>
-      {children}
       {contacts.length > 0
         ? contacts.map(contact => (
             <ListItem key={contact.id}>
@@ -35,4 +35,14 @@ export const ListOfContacts = ({ onDeleteContact, contacts, children }) => {
         : 'No matches found'}
     </List>
   );
+};
+
+ListOfContacts.propTypes = {
+  onDeleteContact: PropTypes.func.isRequired,
+  contacts: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      number: PropTypes.string.isRequired,
+    })
+  ).isRequired,
 };
