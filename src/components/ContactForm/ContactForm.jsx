@@ -30,8 +30,6 @@ export class ContactForm extends Component {
   };
 
   render() {
-    // const { editId, editName, editNumber } = this.props;  
-
     return (
       <form action="#" onSubmit={this.contactSubmitHandler}>
         <input name="id" defaultValue={this.state.id} hidden />
@@ -65,6 +63,7 @@ export class ContactForm extends Component {
         </Box>
 
         <SubmitButton type="submit">{buttonText}</SubmitButton>
+        Classic form
       </form>
     );
   }

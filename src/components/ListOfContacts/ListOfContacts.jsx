@@ -1,8 +1,9 @@
 import React from 'react';
 import { Box } from 'components/Common/Box.styled';
-import { List, ListItem, Name, Number, DeleteButton, EditButton } from './ListOfContacts.styled';
+import { List, ListItem, Name, Number, DeleteButton } from './ListOfContacts.styled';
 
-export const ListOfContacts = ({ onDeleteContact, onEditContact, contacts, children }) => {
+// export const ListOfContacts = ({ onDeleteContact, onEditContact, contacts, children }) => {
+export const ListOfContacts = ({ onDeleteContact, contacts, children }) => {
   return (
     <List>
       {children}
@@ -14,13 +15,13 @@ export const ListOfContacts = ({ onDeleteContact, onEditContact, contacts, child
                 <Number className="number">{contact.number}</Number>
               </Box>
               <Box>
-                <EditButton
+                {/* <EditButton
                   onClick={() => {
                     onEditContact(contact);
                   }}
                 >
                   ✏️
-                </EditButton>
+                </EditButton> */}
                 <DeleteButton
                   onClick={() => {
                     onDeleteContact(contact.id);
