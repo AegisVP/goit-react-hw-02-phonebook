@@ -34,6 +34,7 @@ export const SubmitButton = styled.button`
   padding: ${p => p.theme.mp(2, 1)};
   margin: ${p => p.theme.mp(3, 'auto', 2)};
   width: 80%;
+  font-weight: bold;
 
   border: none;
   border-radius: ${p => p.theme.radii.normal};
