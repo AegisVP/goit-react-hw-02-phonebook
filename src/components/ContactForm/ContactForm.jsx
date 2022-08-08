@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { SubmitButton, Label, InputField } from './ContactForm.styled';
 import { Box } from 'components/Common/Box.styled';
 
-const initialValues = { id: '', name: '', number: '' };
+const initialValues = { name: '', number: '' };
 
 let buttonText = 'Add user';
 
@@ -12,8 +12,8 @@ export class ContactForm extends Component {
 
   contactSubmitHandler = e => {
     e.preventDefault();
-    const { id, name, number } = e.target.elements;
-    if (this.props.onSubmit({ id: id.value, name: name.value, number: number.value })) this.setState(initialValues);
+    const { name, number } = e.target.elements;
+    if (this.props.onSubmit({ name: name.value, number: number.value })) this.setState(initialValues);
   };
 
   handleChange = e => {
@@ -23,8 +23,6 @@ export class ContactForm extends Component {
   render() {
     return (
       <form action="#" onSubmit={this.contactSubmitHandler}>
-        <input name="id" defaultValue={this.state.id} hidden />
-
         <Box display="flex" flexDirection="column" my="10px" p="0" border="1px solid #888888" borderRadius="2px">
           <Label htmlFor="contactName">Name</Label>
           <InputField
@@ -37,10 +35,10 @@ export class ContactForm extends Component {
             onChange={this.handleChange}
           />
         </Box>
-
         <Box display="flex" flexDirection="column" my="10px" p="0" border="1px solid #888888" borderRadius="2px">
           <Label htmlFor="contactNumber">Phone number</Label>
           <InputField
+            id="contactNumber"
             type="tel"
             name="number"
             value={this.state.number}
@@ -50,7 +48,6 @@ export class ContactForm extends Component {
             onChange={this.handleChange}
           />
         </Box>
-
         <SubmitButton type="submit">{buttonText}</SubmitButton>
         Classic form
       </form>
