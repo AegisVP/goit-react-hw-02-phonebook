@@ -5,6 +5,7 @@ export const theme = {
     inverseText: '#ffffff',
     secondBackground: '#f0f0f0',
     pageBackground: '#ffffff',
+    buttonColor: 'rgb(180, 200, 255)',
   },
   fontSizes: {
     s: '12px',

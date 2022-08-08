@@ -3,6 +3,8 @@ import styled from 'styled-components';
 export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
+  padding: ${p => p.theme.mp(2)};
+  margin: ${p => p.theme.mp(2)};
   border-top: 2px solid #dddddd;
   width: 400px;
   border-radius: ${p => p.theme.radii.normal};
