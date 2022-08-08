@@ -3,8 +3,7 @@ import { Form, Formik } from 'formik';
 import * as yup from 'yup';
 import PropTypes from 'prop-types';
 
-import { SubmitButton, Label, InputField } from './ContactFormFormik.styled';
-import { ErrorText } from './ContactFormFormik.styled';
+import { SubmitButton, Label, InputField, ErrorText } from 'components/ContactFormFormik/ContactFormFormik.styled';
 import { Box } from 'components/Common/Box.styled';
 
 const initialValues = { id: '', name: '', number: '' };

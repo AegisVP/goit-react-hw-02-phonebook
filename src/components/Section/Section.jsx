@@ -1,4 +1,4 @@
-import { Title, Wrapper } from './Section.styled';
+import { Title, Wrapper } from 'components/Section/Section.styled';
 import PropTypes from 'prop-types';
 
 export const Section = ({ title, children }) => (

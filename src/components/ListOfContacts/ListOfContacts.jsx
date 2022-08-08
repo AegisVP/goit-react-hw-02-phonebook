@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box } from 'components/Common/Box.styled';
-import { List, ListItem, Name, Number, DeleteButton } from './ListOfContacts.styled';
+import { List, ListItem, Name, Number, DeleteButton } from 'components/ListOfContacts/ListOfContacts.styled';
 import { PropTypes } from 'prop-types';
 
 // export const ListOfContacts = ({ onDeleteContact, onEditContact, contacts, children }) => {

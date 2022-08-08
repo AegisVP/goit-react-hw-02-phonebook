@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box } from 'components/Common/Box.styled';
-import { Button, Label, InputField } from './Filter.styled';
+import { Button, Label, InputField } from 'components/Filter/Filter.styled';
 import { PropTypes } from 'prop-types';
 
 export const FilterForm = ({ onChange, filterValue, onClear }) => {
