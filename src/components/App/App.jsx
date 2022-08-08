@@ -30,7 +30,7 @@ export class App extends Component {
     const trimmedName = name.trim();
     const normalizedName = trimmedName.toLocaleLowerCase();
 
-    if (this.state.contacts.some(contact => contact.name.toLocaleLowerCase() === normalizedName)) {
+    if (this.state.contacts.some(({name}) => name === normalizedName)) {
       window.alert('This name already exists in the list!');
       return;
     }
