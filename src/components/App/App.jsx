@@ -27,14 +27,15 @@ export class App extends Component {
   onAddContact = ({ name, number }) => {
     const id = nanoid();
 
-    const normalizedName = name.trim();
+    const trimmedName = name.trim();
+    const normalizedName = trimmedName.toLocaleLowerCase();
 
-    if (this.state.contacts.find(contact => contact.name === normalizedName)) {
+    if (this.state.contacts.find(contact => contact.name.toLocaleLowerCase() === normalizedName)) {
       window.alert('This name already exists in the list!');
       return;
     }
 
-    this.setState(({ contacts }) => ({ contacts: [...contacts, { id, name: normalizedName, number }] }));
+    this.setState(({ contacts }) => ({ contacts: [...contacts, { id, name: trimmedName, number }] }));
     return id;
   };
 
