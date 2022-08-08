@@ -15,11 +15,7 @@ const validationSchema = yup.object().shape({
 let buttonText = 'Add user';
 
 export class ContactFormFormik extends Component {
-  state = {
-    id: '',
-    name: '',
-    number: '',
-  };
+  state = initialValues;
 
   contactSubmitHandler = (val, act) => {
     if (this.props.onSubmit(val)) act.resetForm();
@@ -38,6 +34,7 @@ export class ContactFormFormik extends Component {
           <Box display="flex" flexDirection="column" my="10px" p="0" border="1px solid #888888" borderRadius="2px">
             <Label htmlFor="contactNumber">Phone number</Label>
             <InputField
+              id="contactNumber"
               type="tel"
               name="number"
               pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,15}"
