@@ -20,19 +20,16 @@ export class App extends Component {
     ],
     formikSelected: false,
     filter: '',
-    // editId: '',
-    // editName: '',
-    // editNumber: '',
   };
 
   onFormikSelect = ({ target: { checked } }) => this.setState({ formikSelected: checked });
 
-  onAddContact = ({ id, name, number }) => {
-    if (id === '' || id === null || this.state.contacts.map(contact => contact.id).includes(id)) id = nanoid();
+  onAddContact = ({ name, number }) => {
+    const id = nanoid();
 
     const normalizedName = name.trim();
 
-    if (this.state.contacts.map(contact => contact.name).includes(normalizedName)) {
+    if (this.state.contacts.find(contact => contact.name === normalizedName)) {
       window.alert('This name already exists in the list!');
       return;
     }
@@ -40,14 +37,6 @@ export class App extends Component {
     this.setState(({ contacts }) => ({ contacts: [...contacts, { id, name: normalizedName, number }] }));
     return id;
   };
-
-  // onEditContact = ({ id, name, number }) => {
-  //   this.setState({ editId: id, editName: name, editNumber: number });
-  // };
-
-  // onSaveContact = ({ id, name, number }) => {
-  //   console.log('id, name, number', id, name, number);
-  // };
 
   onDeleteContact = id => {
     if (this.state.contacts.length === 1) this.clearFilterField();
@@ -63,7 +52,6 @@ export class App extends Component {
   };
 
   render() {
-    // const { filter, contacts, editName, editNumber, editId } = this.state;
     const { filter, contacts } = this.state;
     const normalizedFilter = filter.toLocaleLowerCase();
     const filteredContacts = contacts.filter(contact => contact.name.toLocaleLowerCase().includes(normalizedFilter));
@@ -75,7 +63,6 @@ export class App extends Component {
             <FormikSelect onFormikSelect={this.onFormikSelect} />
           </Section>
           <Section title="Contact info">
-            {/* <ContactForm name={editName} number={editNumber} id={editId} onSubmit={this.onAddContact} /> */}
             {this.state.formikSelected ? (
               <ContactFormFormik onSubmit={this.onAddContact} />
             ) : (

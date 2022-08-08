@@ -3,7 +3,6 @@ import { Box } from 'components/Common/Box.styled';
 import { List, ListItem, Name, Number, DeleteButton } from 'components/ListOfContacts/ListOfContacts.styled';
 import { PropTypes } from 'prop-types';
 
-// export const ListOfContacts = ({ onDeleteContact, onEditContact, contacts, children }) => {
 export const ListOfContacts = ({ onDeleteContact, contacts }) => {
   return (
     <List>
@@ -15,13 +14,6 @@ export const ListOfContacts = ({ onDeleteContact, contacts }) => {
                 <Number className="number">{contact.number}</Number>
               </Box>
               <Box>
-                {/* <EditButton
-                  onClick={() => {
-                    onEditContact(contact);
-                  }}
-                >
-                  ✏️
-                </EditButton> */}
                 <DeleteButton
                   onClick={() => {
                     onDeleteContact(contact.id);

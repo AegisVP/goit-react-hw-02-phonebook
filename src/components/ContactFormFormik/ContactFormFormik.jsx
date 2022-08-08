@@ -29,7 +29,6 @@ export class ContactFormFormik extends Component {
     return (
       <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={this.contactSubmitHandler}>
         <Form>
-          <input name="id" defaultValue={this.state.id} hidden />
           <Box display="flex" flexDirection="column" my="10px" p="0" border="1px solid #888888" borderRadius="2px">
             <Label htmlFor="contactName">Name</Label>
             <InputField id="contactName" type="text" name="name" title="Enter your name" required />
