@@ -5,10 +5,18 @@ import { Box } from 'components/Common/Box.styled';
 
 const initialValues = { id: '', name: '', number: '' };
 
-let buttonText = 'Add user';
+const addButtonText = 'Add user';
+const editButtonText = 'Update user';
 
 export class ContactForm extends Component {
   state = initialValues;
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.editId !== this.props.editId && prevState.id === this.state.id) {
+      const { editId, editName, editNumber } = this.props;
+      this.setState({ id: editId, name: editName, number: editNumber });
+    }
+  }
 
   contactSubmitHandler = e => {
     e.preventDefault();
@@ -24,7 +32,6 @@ export class ContactForm extends Component {
     return (
       <form action="#" onSubmit={this.contactSubmitHandler}>
         <input name="id" defaultValue={this.state.id} hidden />
-
         <Box display="flex" flexDirection="column" my="10px" p="0" border="1px solid #888888" borderRadius="2px">
           <Label htmlFor="contactName">Name</Label>
           <InputField
@@ -37,7 +44,6 @@ export class ContactForm extends Component {
             onChange={this.handleChange}
           />
         </Box>
-
         <Box display="flex" flexDirection="column" my="10px" p="0" border="1px solid #888888" borderRadius="2px">
           <Label htmlFor="contactNumber">Phone number</Label>
           <InputField
@@ -50,8 +56,7 @@ export class ContactForm extends Component {
             onChange={this.handleChange}
           />
         </Box>
-
-        <SubmitButton type="submit">{buttonText}</SubmitButton>
+        <SubmitButton type="submit">{this.props.editId === this.state.id ? editButtonText : addButtonText}</SubmitButton>
         Classic form
       </form>
     );
