@@ -6,6 +6,7 @@ export const theme = {
     secondBackground: '#f0f0f0',
     pageBackground: '#ffffff',
     buttonColor: 'rgb(180, 200, 255)',
+    errButtonColor: 'rgb(255, 200, 180)',
   },
   fontSizes: {
     s: '12px',

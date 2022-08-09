@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { SubmitButton, Label, InputField } from './ContactForm.styled';
+import { SubmitButton, ResetButton, Label, InputField } from './ContactForm.styled';
 import { Box } from 'components/Common/Box.styled';
 
 const initialValues = { id: '', name: '', number: '' };
@@ -24,6 +24,11 @@ export class ContactForm extends Component {
     if (this.props.onSubmit({ id: id.value, name: name.value, number: number.value })) this.setState(initialValues);
   };
 
+  onResetForm = () => {
+    this.setState(initialValues);
+    this.props.onResetForm();
+  };
+
   handleChange = e => {
     this.setState({ [e?.currentTarget?.name]: e?.currentTarget?.value });
   };
@@ -32,7 +37,7 @@ export class ContactForm extends Component {
     return (
       <form action="#" onSubmit={this.contactSubmitHandler}>
         <input name="id" defaultValue={this.state.id} hidden />
-        <Box display="flex" flexDirection="column" my="10px" p="0" border="1px solid #888888" borderRadius="2px">
+        <Box display="flex" flexDirection="column" mt="10px" p="0" border="1px solid #888888" borderRadius="2px">
           <Label htmlFor="contactName">Name</Label>
           <InputField
             id="contactName"
@@ -44,7 +49,7 @@ export class ContactForm extends Component {
             onChange={this.handleChange}
           />
         </Box>
-        <Box display="flex" flexDirection="column" my="10px" p="0" border="1px solid #888888" borderRadius="2px">
+        <Box display="flex" flexDirection="column" mt="10px" p="0" border="1px solid #888888" borderRadius="2px">
           <Label htmlFor="contactNumber">Phone number</Label>
           <InputField
             type="tel"
@@ -56,7 +61,16 @@ export class ContactForm extends Component {
             onChange={this.handleChange}
           />
         </Box>
-        <SubmitButton type="submit">{this.props.editId === this.state.id ? editButtonText : addButtonText}</SubmitButton>
+        {this.props.editId ? (
+          <Box display="flex">
+            <SubmitButton type="submit">{editButtonText}</SubmitButton>
+            <ResetButton type="reset" onClick={this.onResetForm}>
+              ❌
+            </ResetButton>
+          </Box>
+        ) : (
+          <SubmitButton type="submit">{addButtonText}</SubmitButton>
+        )}
         Classic form
       </form>
     );

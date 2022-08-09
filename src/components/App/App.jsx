@@ -3,6 +3,7 @@ import { nanoid } from 'nanoid';
 import { Box } from 'components/Common/Box.styled';
 import { Section } from 'components/Section/Section';
 import { ContactForm } from 'components/ContactForm/ContactForm';
+import { ContactFormFormik } from 'components/ContactFormFormik/ContactFormFormik';
 import { ListOfContacts } from 'components/ListOfContacts/ListOfContacts';
 import { FilterForm } from 'components/Filter/Filter';
 import { FormikSelect } from 'components/FormikSelect/FormikSelect';
@@ -30,10 +31,10 @@ export class App extends Component {
     name = name.trim();
     const normalizedName = name.toLocaleLowerCase();
 
-    if (this.state.contacts.some(({ name }) => name.toLocaleLowerCase() === normalizedName)) {
-      if (id !== '' && id !== null) {
-        this.onDeleteContact(id);
-      } else {
+    if (id !== '' && id !== null) {
+      this.onDeleteContact(id);
+    } else {
+      if (this.state.contacts.some(({ name }) => name.toLocaleLowerCase() === normalizedName)) {
         window.alert('This name already exists in the list!');
         return;
       }
@@ -51,11 +52,16 @@ export class App extends Component {
 
   onSaveContact = ({ id, name, number }) => {
     this.setState(({ contacts }) => ({ contacts: [...contacts, { id, name, number }] }));
+    this.setState({ editId: '', editName: '', editNumber: '' });
+  };
+
+  onResetForm = () => {
+    this.setState({ editId: '', editName: '', editNumber: '' });
   };
 
   onDeleteContact = id => {
-    if (this.state.contacts.length === 1) this.clearFilterField();
     this.setState({ contacts: this.state.contacts.filter(contact => contact.id !== id) });
+    if (this.state.contacts.length === 1) this.clearFilterField();
   };
 
   onFilterContacts = ({ currentTarget: { value } }) => {
@@ -69,7 +75,9 @@ export class App extends Component {
   render() {
     const { filter, contacts, editId, editName, editNumber } = this.state;
     const normalizedFilter = filter.toLocaleLowerCase();
-    const filteredContacts = contacts.filter(contact => contact.name.toLocaleLowerCase().includes(normalizedFilter));
+    const filteredContacts = contacts
+      .filter(contact => contact.name.toLocaleLowerCase().includes(normalizedFilter))
+      .sort((a, b) => a.name.localeCompare(b.name));
 
     return (
       <Box display="flex" flexDirection="row">
@@ -78,7 +86,23 @@ export class App extends Component {
             <FormikSelect onFormikSelect={this.onFormikSelect} />
           </Section>
           <Section title="Contact info">
-            <ContactForm editId={editId} editName={editName} editNumber={editNumber} onSubmit={this.onAddContact} />
+            {this.state.formikSelected ? (
+              <ContactFormFormik
+                editId={editId}
+                editName={editName}
+                editNumber={editNumber}
+                onSubmit={this.onAddContact}
+                onResetForm={this.onResetForm}
+              />
+            ) : (
+              <ContactForm
+                editId={editId}
+                editName={editName}
+                editNumber={editNumber}
+                onSubmit={this.onAddContact}
+                onResetForm={this.onResetForm}
+              />
+            )}
           </Section>
           {this.state.contacts.length > 0 && (
             <Section>
