@@ -34,6 +34,11 @@ export class ContactForm extends Component {
   };
 
   render() {
+    if (this.props.editId && !this.state.id) {
+      const { editId, editName, editNumber } = this.props;
+      this.setState({ id: editId, name: editName, number: editNumber });
+    }
+
     return (
       <form action="#" onSubmit={this.contactSubmitHandler}>
         <input name="id" defaultValue={this.state.id} hidden />
@@ -65,7 +70,7 @@ export class ContactForm extends Component {
           <Box display="flex">
             <SubmitButton type="submit">{editButtonText}</SubmitButton>
             <ResetButton type="reset" onClick={this.onResetForm}>
-              ❌
+              🔙
             </ResetButton>
           </Box>
         ) : (
@@ -76,6 +81,8 @@ export class ContactForm extends Component {
     );
   }
 }
+
+// ❌✍️👎👍🛑⛔🔙
 
 ContactForm.propTypes = {
   onSubmit: PropTypes.func.isRequired,

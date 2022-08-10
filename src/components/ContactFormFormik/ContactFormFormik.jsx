@@ -48,6 +48,11 @@ export class ContactFormFormik extends Component {
   formResetHandler = () => {};
 
   render() {
+    if (this.props.editId && !this.state.id) {
+      const { editId, editName, editNumber } = this.props;
+      this.setState({ id: editId, name: editName, number: editNumber });
+    }
+
     return (
       <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={this.contactSubmitHandler}>
         {({ setFieldValue }) => {
@@ -77,7 +82,7 @@ export class ContactFormFormik extends Component {
                 <Box display="flex">
                   <SubmitButton type="submit">{editButtonText}</SubmitButton>
                   <ResetButton type="reset" onClick={this.onResetForm}>
-                    ❌
+                    🔙
                   </ResetButton>
                 </Box>
               ) : (
@@ -91,6 +96,7 @@ export class ContactFormFormik extends Component {
     );
   }
 }
+//❌✍️👎👍🛑⛔🔙
 
 ContactFormFormik.propTypes = {
   onSubmit: PropTypes.func,

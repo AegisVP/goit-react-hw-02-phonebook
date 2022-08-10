@@ -45,6 +45,8 @@ export const SubmitButton = styled(Button)`
 `;
 
 export const ResetButton = styled(Button)`
+  font-size: 18px;
   width: 40px;
+  padding: ${p => p.theme.mp(1)};
   background-color: ${p => p.theme.colors.errButtonColor};
 `;
