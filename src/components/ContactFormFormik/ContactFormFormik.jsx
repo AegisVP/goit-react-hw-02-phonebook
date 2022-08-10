@@ -21,6 +21,11 @@ export class ContactFormFormik extends Component {
   };
 
   render() {
+    if (this.props.editId && !this.state.id) {
+      const { editId, editName, editNumber } = this.props;
+      this.setState({ id: editId, name: editName, number: editNumber });
+    }
+
     return (
       <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={this.contactSubmitHandler}>
         <Form>

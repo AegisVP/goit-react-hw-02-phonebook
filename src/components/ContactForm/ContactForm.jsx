@@ -21,6 +21,11 @@ export class ContactForm extends Component {
   };
 
   render() {
+    if (this.props.editId && !this.state.id) {
+      const { editId, editName, editNumber } = this.props;
+      this.setState({ id: editId, name: editName, number: editNumber });
+    }
+
     return (
       <form action="#" onSubmit={this.contactSubmitHandler}>
         <Box display="flex" flexDirection="column" my="10px" p="0" border="1px solid #888888" borderRadius="2px">
